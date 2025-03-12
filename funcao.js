@@ -41,8 +41,9 @@ function calc(n1, n2, op)
     return op(n1, n2);
 }
 
-console.log( calc(3,5, mult) );
-console.log( calc(3,5, soma) );
-console.log( calc(3,5, sub) );
+// console.log( calc(3,5, mult) );
+// console.log( calc(3,5, soma) );
+// console.log( calc(3,5, sub) );
 
 
+module.exports = soma;
