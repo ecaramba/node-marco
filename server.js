@@ -11,9 +11,20 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/contato", function(req, res){
    
-    // pegando os valores do form
-    let valores = req.query;
-    res.json(valores);
+    fs.readFile("alunos.csv", "utf-8", function(erro, dados){
+        let linha = dados.split("\n");
+
+        let html = "<ul>";
+
+        linha.forEach(function(item){
+            html += "<li>" + item + "</li>"
+        });
+
+        html += "</ul>";
+
+        res.send(html);
+            
+    })
     
 });
 
