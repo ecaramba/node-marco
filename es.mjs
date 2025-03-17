@@ -9,8 +9,11 @@ let soma = function(a, b) {
 }
 
 // arrow function 
-let mult = (a,b) => a + b;
+export let mult = (a,b) => a + b;
 
+export default function abc(n1, n2){
+
+}
 
 let acordado = null;
 
@@ -41,7 +44,7 @@ let [b, c, ...resto] = cidades;
 let novo = [...cidades, ...vetor];
 console.log(novo);
 
-let pessoa = {
+export let pessoa = {
     nome: "Maria",
     idade: 23,
     peso: 45.3
@@ -56,3 +59,5 @@ console.log(nome, idade);
 nome = "João";
 
 console.log(pessoa, nome);
+
+
