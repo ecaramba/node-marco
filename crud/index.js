@@ -8,29 +8,44 @@
 // SQL   -> relacional -> estruturado -> Mysql, sqlserver, oracle, postgres
 // NoSQL -> Mongodb, redis, cassandra, dinamo
 
+import { open } from "sqlite";
+import sqlite3 from "sqlite3";
 
-function cadastrar()
+export function cadastrar()
 {
 
 }
 
-function atualizar()
+export function atualizar()
 {
 
 }
 
-function deletar()
+export function deletar()
 {
 
 }
 
-function pesquisar()
+export function pesquisar()
 {
 
 }
 
-function listar()
+/**
+ * Lista todos os clientes cadastrados ordenados pelo nome
+ * @returns {JSON}
+ */
+export async function listar()
 {
-    
+    let sql = "SELECT * FROM clientes ORDER BY nome";
+
+    const db = await open({
+        filename: "clientes.db",
+        driver: sqlite3.Database
+
+    });
+
+    return await db.all(sql);
+
 }
 
