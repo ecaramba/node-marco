@@ -18,7 +18,7 @@ import sqlite3 from "sqlite3";
 async function conexao()
 {
     const db = await open({
-        filename: "clientes.db3",
+        filename: "clientes.db",
         driver: sqlite3.Database
 
     });
@@ -55,14 +55,34 @@ export async function cadastrar(nome, email, cidade, telefone, idade)
     }
 
 }
-
-export function atualizar()
+/**
+ * Altera os dados de um cliente
+ * @param {number} id 
+ * @param {JSON} colunas 
+ */
+export function atualizar(id, colunas)
 {
-
+    let sql = "UPDATE clientes"
+        + "SET telefone = '32-3211-2345', idade = 22"
+        + "WHERE id = 50"
+    
+    return "SET telefone = '32-3211-2345', idade = 22";
 }
 
-export function deletar()
+/**
+ * Deleta o cliente pelo id
+ * @param {number} id 
+ * @returns {boolean}
+ */
+export async function deletar(id)
 {
+    let sql = 'DELETE FROM clientes WHERE id = ?';
+
+    const db = await conexao();
+
+    const retorno = await db.run(sql, id);
+
+    return (retorno.changes == 1)? true : false;
 
 }
 

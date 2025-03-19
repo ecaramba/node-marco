@@ -1,9 +1,14 @@
-import { listar, pesquisar, cadastrar } from "./index.js";
+import { listar, pesquisar, cadastrar, deletar, atualizar } from "./index.js";
 
 async function teste()
 {
 
-    let res = await cadastrar("Paulo", "paulo@xzc.com", "Pinhais");
+    let valores = {
+        telefone: "(12)21212-212",
+        idade: 23
+    }
+
+    let res = await atualizar(5, valores);
     
     console.log(res);
 }
