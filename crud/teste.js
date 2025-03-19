@@ -1,9 +1,9 @@
-import { listar } from "./index.js";
+import { listar, pesquisar } from "./index.js";
 
 async function teste()
 {
 
-    let res = await listar();
+    let res = await pesquisar(50);
     
     console.log(res);
 }

@@ -26,8 +26,22 @@ export function deletar()
 
 }
 
-export function pesquisar()
+/**
+ * Retorna um cliente pelo id
+ * @param {number} id 
+ * @returns {JSON}
+ */
+export async function pesquisar(id)
 {
+    let sql = "SELECT * FROM clientes WHERE id = " + id;
+
+    const db = await open({
+        filename: "clientes.db",
+        driver: sqlite3.Database
+
+    });
+
+    return await db.get(sql);
 
 }
 
