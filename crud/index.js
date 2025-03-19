@@ -18,7 +18,7 @@ import sqlite3 from "sqlite3";
 async function conexao()
 {
     const db = await open({
-        filename: "clientes.db",
+        filename: "clientes.db3",
         driver: sqlite3.Database
 
     });
@@ -40,18 +40,20 @@ export async function cadastrar(nome, email, cidade, telefone, idade)
     let sql = 'INSERT INTO clientes'
         + '(nome, cidade, email, idade, telefone)'
         + 'VALUES'
-        + "('"
-        + nome +"', '"
-        + cidade +"', '"
-        + email +"', "
-        + idade + ", '"
-        + telefone + "')";
+        + "(?, ?, ?, ?, ?)";
 
-    const db = await conexao();
+    try {
+        const db = await conexao();
 
-    let retorno = await db.run(sql);
+        let retorno = await db.run(sql, nome, cidade, email, idade, telefone);
+        return (retorno.changes == 1)? true : false;
 
-    return (retorno.changes == 1)? true : false;
+    } catch (erro)
+    {
+        console.log("Deu ruim ao cadastrar");
+        return false;
+    }
+
 }
 
 export function atualizar()
