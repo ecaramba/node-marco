@@ -60,13 +60,45 @@ export async function cadastrar(nome, email, cidade, telefone, idade)
  * @param {number} id 
  * @param {JSON} colunas 
  */
-export function atualizar(id, colunas)
+export async function atualizar(id, colunas)
 {
-    let sql = "UPDATE clientes"
-        + "SET telefone = '32-3211-2345', idade = 22"
-        + "WHERE id = 50"
+
+
+    let set = [];
+
+    if (colunas.telefone)
+    {
+        set.push("telefone = '"+ colunas.telefone +"'")
+    }
+
+    if (colunas.nome)
+    {
+        set.push("nome = '"+ colunas.nome +"'")
+    }
+
+    if (colunas.idade)
+    {
+        set.push("idade = '"+ colunas.idade +"'")
+    }
+
+    if (colunas.email)
+    {
+        set.push("email = '"+ colunas.email +"'")
+    }
+
+    if (colunas.cidade)
+    {
+        set.push("cidade = '"+ colunas.cidade +"'")
+    }
     
-    return "SET telefone = '32-3211-2345', idade = 22";
+    let sql = "UPDATE clientes "
+        + " SET " + set.join(" , ")
+        + " WHERE id = ?";
+
+    const db = await conexao();
+    const retorno = await db.run(sql, id);
+
+    return (retorno.changes == 1)? true : false;
 }
 
 /**
