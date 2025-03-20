@@ -2,9 +2,13 @@
 // Interface de Acesso Programatico
 
 import express from "express";
+import cors from "cors";
+
 import { listar } from "./model/clientes.js";
 
 const app = express();
+
+app.use(cors());
 
 // route -> action 
 app.get("/clientes", async (req, res) => {
