@@ -24,17 +24,41 @@ $(document).ready(function(){
 
         let nome = $("#nome").val();
         let email = $("#email").val();
+        let cidade = $("#cidade").val();
+        let telefone = $("#telefone").val();
+        let idade = $("#idade").val();
+
+        let temErro = false;
 
         $("input").removeClass('is-invalid');
 
         if (nome.trim() == '')
         {
             $("#nome").addClass('is-invalid');
+            temErro = true;
         }
 
         if (email == '')
         {
             $("#email").addClass('is-invalid');
+            temErro = true;
+        }
+
+        if (temErro == false)
+        {
+            // envia pro servidor
+
+            let dados = {
+                nome,
+                email,
+                cidade,
+                idade,
+                telefone
+            }
+
+            $.post("http://localhost:3000/clientes/novo", dados, (retorno) => {
+                console.log(retorno);
+            })
         }
 
     }); // fim do click
