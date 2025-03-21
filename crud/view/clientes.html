@@ -38,7 +38,7 @@
 
 
     <!-- Modal -->
-<div class="modal fade" id="form-cadastro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="form-cadastro" tabindex="-1" >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -83,6 +83,20 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           <button id="bt-salvar" type="button" class="btn btn-primary">Salvar</button>
         </div>
+      </div>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toast-add" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        
+        <strong class="me-auto">Cadastro de Clientes</strong>
+        
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        O cliente foi cadastrado com sucesso.
       </div>
     </div>
 </div>

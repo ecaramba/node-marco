@@ -58,7 +58,28 @@ $(document).ready(function(){
 
             $.post("http://localhost:3000/clientes/novo", dados, (retorno) => {
                 console.log(retorno);
-            })
+
+                if (retorno == true)
+                {
+                    $("#form-cadastro").modal("hide");
+                    
+                    let html = '<tr>'
+                        +'<td></td>'
+                        +'<td>'+ dados.nome +'</td>'
+                        +'<td>'+ dados.email +'</td>'
+                        +'<td>'+ dados.telefone +'</td>'
+                        +'<td>'+ dados.cidade +'</td>'
+                        +'<td>'+ dados.idade +'</td>'
+                        +'</tr>';
+
+                    $("#lista").append(html);
+
+                    $("#toast-add").toast('show');
+
+                    $("input").val("");
+                }
+
+            }); //fim do post
         }
 
     }); // fim do click
