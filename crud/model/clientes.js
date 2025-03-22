@@ -137,9 +137,9 @@ export async function pesquisar(id)
  * Lista todos os clientes cadastrados ordenados pelo nome
  * @returns {JSON}
  */
-export async function listar(coluna = "id")
+export async function listar(coluna = "id", ordem = " ASC")
 {
-    let sql = "SELECT * FROM clientes ORDER BY "+ coluna +" ASC";
+    let sql = "SELECT * FROM clientes ORDER BY "+ coluna +" "+ ordem;
 
     const db = await conexao();
 

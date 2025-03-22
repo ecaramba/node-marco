@@ -1,12 +1,13 @@
 $(document).ready(function(){
 
-    function listarClientes(coluna)
+    function listarClientes(coluna, ord)
     {
-        let ord = {
-            coluna
+        let dados = {
+            coluna,
+            ord
         }
 
-        $.getJSON("http://localhost:3000/clientes", ord, function(dados){
+        $.getJSON("http://localhost:3000/clientes", dados, function(dados){
             
 
             $("#lista").empty();
@@ -98,6 +99,11 @@ $(document).ready(function(){
     $(".ord").click(function(){
 
         let coluna = $(this).attr("coluna");
+        let ord = $(this).attr("ord");
+
+        ord = (ord == "ASC") ? "DESC" : "ASC";
+        $(this).attr("ord", ord);
+       
 
         $(".ord").removeClass("link-secondary");
         $(".ord").addClass("link-primary");
@@ -105,7 +111,7 @@ $(document).ready(function(){
         $(this).removeClass("link-primary");
         $(this).addClass("link-secondary");
 
-        listarClientes(coluna);
+        listarClientes(coluna, ord);
 
 
     }); // fim do click link
