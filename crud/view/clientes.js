@@ -1,24 +1,35 @@
 $(document).ready(function(){
 
-    $.getJSON("http://localhost:3000/clientes", function(dados){
-        
+    function listarClientes(coluna)
+    {
+        let ord = {
+            coluna
+        }
 
-        dados.forEach((item) => {
-
-            let html = '<tr>'
-                +'<td>'+ item.id +'</td>'
-                +'<td>'+ item.nome +'</td>'
-                +'<td>'+ item.email +'</td>'
-                +'<td>'+ item.telefone +'</td>'
-                +'<td>'+ item.cidade +'</td>'
-                +'<td>'+ item.idade +'</td>'
-                +'</tr>'
+        $.getJSON("http://localhost:3000/clientes", ord, function(dados){
             
-            $("#lista").append(html);
 
-        });
+            $("#lista").empty();
 
-    }); // fim getJson
+            dados.forEach((item) => {
+
+                let html = '<tr>'
+                    +'<td>'+ item.id +'</td>'
+                    +'<td>'+ item.nome +'</td>'
+                    +'<td>'+ item.email +'</td>'
+                    +'<td>'+ item.telefone +'</td>'
+                    +'<td>'+ item.cidade +'</td>'
+                    +'<td>'+ item.idade +'</td>'
+                    +'</tr>'
+                
+                $("#lista").append(html);
+
+            });
+
+        }); // fim getJson
+    }
+
+    listarClientes();
 
     $("#bt-salvar").click(() => {
 
@@ -83,5 +94,20 @@ $(document).ready(function(){
         }
 
     }); // fim do click
+
+    $(".ord").click(function(){
+
+        let coluna = $(this).attr("coluna");
+
+        $(".ord").removeClass("link-secondary");
+        $(".ord").addClass("link-primary");
+
+        $(this).removeClass("link-primary");
+        $(this).addClass("link-secondary");
+
+        listarClientes(coluna);
+
+
+    }); // fim do click link
 
 });

@@ -22,7 +22,7 @@ app.get("/clientes", async (req, res) => {
         res.json(dados);
     } catch (erro)
     {
-        res.status("404").send("Coluna não existe no BD")
+        res.status(404).send("Coluna não existe no BD")
     }
 });
 
