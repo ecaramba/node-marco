@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    let backend = (location.hostname = 'localhost')?
+    let backend = (location.hostname == 'localhost')?
         'https://backend-cadastro-qvtt.onrender.com':
         'http://localhost:3000';
 
