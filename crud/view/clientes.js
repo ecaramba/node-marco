@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    let backend = (location.hostname = 'localhost')?
+        'https://backend-cadastro-qvtt.onrender.com':
+        'http://localhost:3000';
+
     function listarClientes(coluna, ord)
     {
         let dados = {
@@ -7,7 +11,7 @@ $(document).ready(function(){
             ord
         }
 
-        $.getJSON("http://localhost:3000/clientes", dados, function(dados){
+        $.getJSON(backend + "/clientes", dados, function(dados){
             
 
             $("#lista").empty();
@@ -68,8 +72,7 @@ $(document).ready(function(){
                 telefone
             }
 
-            $.post("http://localhost:3000/clientes/novo", dados, (retorno) => {
-                console.log(retorno);
+            $.post(backend + "/clientes/novo", dados, (retorno) => {
 
                 if (retorno == true)
                 {
