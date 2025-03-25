@@ -3,8 +3,9 @@
 
 import express from "express";
 import cors from "cors";
+import sha1 from "sha1"
 
-import { listar, cadastrar, deletar } from "./model/clientes.js";
+import { listar, cadastrar, deletar, logar } from "./model/clientes.js";
 
 const app = express();
 
@@ -51,6 +52,20 @@ app.post("/clientes/delete", async(req, res) => {
     let { id } = req.body;
 
     let retorno = await deletar(id);
+
+    res.json(retorno);
+
+});
+
+app.post("/login", async function(req, res) {
+
+    let {usuario, senha} = req.body;
+
+    let hash = sha1(senha)
+
+    let retorno = await logar(usuario, hash);
+
+    retorno = (retorno) ? retorno : "false";
 
     res.json(retorno);
 

@@ -147,3 +147,19 @@ export async function listar(coluna = "id", ordem = " ASC")
 
 }
 
+/**
+ * Verifica se o usuario e senha estão corretos
+ * @param {*} usuario 
+ * @param {*} senha 
+ */
+export async function logar(usuario, senha)
+{
+    let sql = "SELECT * FROM usuarios "
+        + " WHERE usuario = '"+ usuario +"'"
+        + " AND senha = '"+ senha +"'";
+    
+
+    const db = await conexao();
+    return await db.get(sql);
+}
+
