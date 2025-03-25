@@ -4,7 +4,7 @@
 import express from "express";
 import cors from "cors";
 
-import { listar, cadastrar } from "./model/clientes.js";
+import { listar, cadastrar, deletar } from "./model/clientes.js";
 
 const app = express();
 
@@ -42,6 +42,16 @@ app.post("/clientes/novo", async (req, res) => {
         dados.idade
     );
     
+    res.json(retorno);
+
+});
+
+app.post("/clientes/delete", async(req, res) => {
+
+    let { id } = req.body;
+
+    let retorno = await deletar(id);
+
     res.json(retorno);
 
 });

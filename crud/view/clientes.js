@@ -25,6 +25,9 @@ $(document).ready(function(){
                     +'<td>'+ item.telefone +'</td>'
                     +'<td>'+ item.cidade +'</td>'
                     +'<td>'+ item.idade +'</td>'
+                    +'<td><button codigo="'+ item.id +'" class="bt-del btn btn-danger">'
+                    +'<i class="bi bi-x-circle-fill"></i>'
+                    +'</button></td>'
                     +'</tr>'
                 
                 $("#lista").append(html);
@@ -118,5 +121,20 @@ $(document).ready(function(){
 
 
     }); // fim do click link
+
+    $("#lista").on('click', '.bt-del', function(){
+
+        let dados = {
+            id: $(this).attr("codigo")
+        }
+
+        $.post(backend + "/clientes/delete", dados, (retorno) => {
+            if (retorno == true)
+            {
+                listarClientes();
+            } 
+        });
+
+    }); // fim do bt-del
 
 });
